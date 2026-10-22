@@ -1,0 +1,7 @@
+# Nova logo em grafite
+
+Criada com image_gen integrada. A arte anterior foi usada somente como referência de estilo. Arquivo final: public/images/sprout-logo-graffiti.png, 2172 × 724, com transparência. Aplicada ao cabeçalho e rodapé; BARBERSHOP permanece como texto HTML legível abaixo.
+
+## Prompt final
+
+Create a NEW horizontal logo for Sprout BarberShop, using the input only as style reference. Do NOT reproduce or shrink the reference composition. Design a distinct, compact header wordmark: exact text 'SPROUT' in a SINGLE horizontal row of custom chunky graffiti bubble letters, WHITE fill with very thick BLACK outline, restrained bright GREEN highlights. Below it, exact text 'BARBERSHOP' in smaller BLACK bold condensed clean lettering, easy to read. Incorporate one small flat GREEN four-leaf clover to the left, integrated with the S, NOT above the wordmark. New original letter shapes, confident street-art personality inspired by the reference, cleaner and simpler. No 'STUDIO', no sprawling vines, no large central clover, no paint cloud, no background speckles, no elaborate illustration. Only two tiny controlled drips if useful. Wide 3:1 landscape canvas, logo uses 90% of width and most height, narrow clear margins on every edge. Transparent background with actual alpha. Optimized for legibility at 180px width on a white website header. Crisp polished flat raster logo, no mockup, no shadow, no border container.

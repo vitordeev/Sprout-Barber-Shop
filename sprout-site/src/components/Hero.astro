@@ -1,0 +1,44 @@
+---
+import BookingLink from './BookingLink.astro';
+import ContactLink from './ContactLink.astro';
+import { business } from '../data/business';
+import { hasCutPhotos } from '../data/gallery';
+---
+
+<section class="hero wrap" id="inicio" aria-labelledby="hero-title">
+  <div class="hero-copy">
+    <p class="eyebrow">SPROUT BARBERSHOP</p>
+    <h1 id="hero-title">Seu estilo.<br /><span>Nosso cuidado.</span></h1>
+    <p class="intro">
+      Corte, barba e cuidados com o cabelo. Confira os serviços e agende seu
+      horário.
+    </p>
+    <div class="hero-actions"><BookingLink /><ContactLink /></div>
+    {
+      hasCutPhotos && (
+        <a class="text-link hero-gallery-link" href="#cortes">
+          Veja os cortes <span aria-hidden="true">↓</span>
+        </a>
+      )
+    }
+    <a
+      class="rating"
+      href={business.bookingUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`Avaliação ${business.rating} de 5, com ${business.reviews} avaliações no Fresha`}
+      ><span class="stars" aria-hidden="true">★★★★★</span><strong
+        >{business.rating}</strong
+      ><span>· {business.reviews} avaliações no Fresha</span></a
+    >
+  </div>
+  <div class="hero-art">
+    <img
+      src="/images/sprout-brand-complete.png"
+      alt="Sprout Studio: grafite branco e verde com trevo e ramos"
+      width="1254"
+      height="1254"
+      fetchpriority="high"
+    />
+  </div>
+</section>

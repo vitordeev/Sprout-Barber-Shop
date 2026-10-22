@@ -1,0 +1,14 @@
+---
+import { business } from '../data/business';
+const whatsappUrl = `https://wa.me/${business.whatsappNumber}`;
+---
+
+<a
+  class="button button-contact"
+  href={whatsappUrl}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Entrar em contato pelo WhatsApp com a Sprout BarberShop"
+>
+  Entrar em contato <span aria-hidden="true">↗</span>
+</a>

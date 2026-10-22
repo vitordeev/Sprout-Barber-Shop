@@ -1,0 +1,58 @@
+---
+import { business } from '../data/business';
+import BookingLink from './BookingLink.astro';
+import ContactLink from './ContactLink.astro';
+---
+
+<section class="visit section" id="visite" aria-labelledby="visit-title">
+  <div class="wrap">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">LOCALIZAÇÃO E CONTATO</p><h2 id="visit-title">
+          Visite a <span>Sprout.</span>
+        </h2>
+      </div><div class="contact-actions"><BookingLink /><ContactLink /></div>
+    </div>
+    <div class="visit-grid">
+      <div>
+        <h3>Endereço</h3><address>{business.address}</address><p>
+          {business.directions}
+        </p><a
+          class="text-link"
+          href={business.mapsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          >Como chegar <span aria-hidden="true">↗</span></a
+        >
+      </div>
+      <div>
+        <h3>Horários</h3><dl class="hours">
+          {
+            business.hours.map((item) => (
+              <div>
+                <>
+                  <dt>{item.days}</dt>
+                  <dd>{item.hours}</dd>
+                </>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+      <div class="visit-details">
+        <h3>Contato</h3><a
+          class="text-link"
+          href={`https://wa.me/${business.whatsappNumber}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="WhatsApp (11) 91078-9925"
+          >(11) 91078-9925 <span aria-hidden="true">↗</span></a
+        ><ul>
+          <li>Estacionamento disponível</li><li>
+            Próximo ao transporte público
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Services from '../components/Services.astro';
+import Gallery from '../components/Gallery.astro';
+import Videos from '../components/Videos.astro';
+import Reviews from '../components/Reviews.astro';
+
+import Visit from '../components/Visit.astro';
+import Footer from '../components/Footer.astro';
+import MobileBooking from '../components/MobileBooking.astro';
+---
+
+<BaseLayout
+  title="Sprout BarberShop — Seu estilo tem raiz"
+  description="Conheça a Sprout BarberShop: cortes, barba e cuidados com o cabelo. Confira serviços, preços, horários e como chegar."
+  ><Header /><main id="conteudo">
+    <Hero /><Services /><Videos /><Gallery /><Reviews /><Visit />
+  </main><Footer /><MobileBooking /></BaseLayout
+>

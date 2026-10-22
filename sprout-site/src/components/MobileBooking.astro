@@ -1,0 +1,29 @@
+---
+import BookingLink from './BookingLink.astro';
+import { business } from '../data/business';
+---
+
+<aside class="mobile-booking" aria-label="Agendamento rápido">
+  <div><strong>Sprout BarberShop</strong></div>
+  <BookingLink label="Agendar no Fresha" />
+  <a
+    class="mobile-whatsapp"
+    href={`https://wa.me/${business.whatsappNumber}`}
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Entrar em contato pelo WhatsApp"
+  >
+    <svg
+      viewBox="0 0 24 24"
+      width="22"
+      height="22"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.7"
+      aria-hidden="true"
+      ><path
+        d="M21 11.5a8.5 8.5 0 0 1-12.7 7.4L3 21l1.9-5.4A8.5 8.5 0 1 1 21 11.5Z"
+      ></path><path d="M8 8c0 4 4 8 8 8"></path></svg
+    >
+  </a>
+</aside>

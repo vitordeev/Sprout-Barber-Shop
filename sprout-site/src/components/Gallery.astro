@@ -1,0 +1,39 @@
+---
+import { Image } from 'astro:assets';
+import { cutPhotos } from '../data/gallery';
+---
+
+{
+  cutPhotos.length > 0 && (
+    <section
+      class="gallery section wrap"
+      id="cortes"
+      aria-labelledby="gallery-title"
+    >
+      <div class="section-heading">
+        <div>
+          <>
+            <p class="eyebrow">CORTES DA SPROUT</p>
+            <h2 id="gallery-title">
+              Nosso <span>trabalho.</span>
+            </h2>
+          </>
+        </div>
+      </div>
+      <div class="gallery-grid">
+        {cutPhotos.map(({ photo, number }) => (
+          <figure class="gallery-item">
+            <Image
+              src={photo}
+              alt={`Corte de cabelo realizado na Sprout BarberShop — foto ${number}`}
+              widths={[400, 640, 900]}
+              sizes="(max-width: 540px) calc(100vw - 40px), (max-width: 760px) calc((100vw - 56px) / 2), (max-width: 1376px) calc((100vw - 128px) / 3), 416px"
+              format="webp"
+              loading="lazy"
+            />
+          </figure>
+        ))}
+      </div>
+    </section>
+  )
+}

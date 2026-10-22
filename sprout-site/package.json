@@ -1,0 +1,27 @@
+{
+  "name": "sprout-barbershop",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "\u003e=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev --host 127.0.0.1",
+    "check": "astro check",
+    "build": "astro check \u0026\u0026 astro build",
+    "preview": "astro preview --host 127.0.0.1",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "dev:mobile": "astro dev --host 0.0.0.0 --port 4322"
+  },
+  "dependencies": {
+    "astro": "^6.0.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.0",
+    "typescript": "^5.9.0",
+    "prettier": "^3.6.0",
+    "prettier-plugin-astro": "^0.14.0"
+  }
+}

@@ -1,0 +1,218 @@
+---
+import { videoSlots, hasVideos } from '../data/videos';
+---
+
+<section class="videos section wrap" id="videos" aria-labelledby="videos-title">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">SPROUT EM MOVIMENTO</p>
+      <h2 id="videos-title">Veja de <span>perto.</span></h2>
+      <p class="videos-intro">
+        {
+          hasVideos
+            ? 'Confira os vídeos da barbearia.'
+            : 'Espaços reservados para os oito vídeos da barbearia.'
+        }
+      </p>
+    </div>
+  </div>
+  <div
+    class="videos-track"
+    id="video-carousel"
+    tabindex="0"
+    role="region"
+    aria-label="Carrossel de vídeos; arraste para os lados ou use as setas do teclado"
+  >
+    {
+      videoSlots.map(({ title, src }, index) => (
+        <figure class="video-card">
+          {src ? (
+            <video
+              class="video-player"
+              controls
+              playsinline
+              preload="metadata"
+              aria-label={title}
+            >
+              <source
+                src={src}
+                type={/\.webm$/i.test(src) ? 'video/webm' : 'video/mp4'}
+              />
+              Seu navegador não suporta este vídeo.{' '}
+              <a href={src}>Abrir vídeo</a>
+            </video>
+          ) : (
+            <div class="video-placeholder">
+              <span>VÍDEO {index + 1}</span>
+              <p>Seu vídeo aqui</p>
+            </div>
+          )}
+        </figure>
+      ))
+    }
+  </div>
+</section>
+
+<script>
+  const section = document.querySelector<HTMLElement>('.videos');
+  const track = section?.querySelector<HTMLElement>('.videos-track');
+  if (section && track) {
+    let startX = 0;
+    let startScroll = 0;
+    let pointerId: number | null = null;
+    let dragged = false;
+
+    track.addEventListener('pointerdown', (event) => {
+      if (event.pointerType !== 'mouse' || event.button !== 0) return;
+      // Leave the native playback controls available for clicking and seeking.
+      const video = (event.target as HTMLElement).closest('video');
+      if (video && event.clientY >= video.getBoundingClientRect().bottom - 56)
+        return;
+      pointerId = event.pointerId;
+      startX = event.clientX;
+      startScroll = track.scrollLeft;
+      dragged = false;
+    });
+    track.addEventListener('pointermove', (event) => {
+      if (event.pointerId !== pointerId) return;
+      const distance = event.clientX - startX;
+      if (!dragged && Math.abs(distance) < 6) return;
+      if (!dragged) {
+        dragged = true;
+        track.classList.add('is-dragging');
+        track.setPointerCapture(event.pointerId);
+      }
+      event.preventDefault();
+      track.scrollLeft = startScroll - distance;
+    });
+    const finishDrag = (event: PointerEvent) => {
+      if (event.pointerId !== pointerId) return;
+      pointerId = null;
+      track.classList.remove('is-dragging');
+      if (track.hasPointerCapture(event.pointerId))
+        track.releasePointerCapture(event.pointerId);
+    };
+    window.addEventListener('pointerup', finishDrag);
+    window.addEventListener('pointercancel', finishDrag);
+    track.addEventListener('lostpointercapture', finishDrag);
+    track.addEventListener('dragstart', (event) => event.preventDefault());
+    track.addEventListener(
+      'click',
+      (event) => {
+        if (!dragged) return;
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        dragged = false;
+      },
+      true,
+    );
+
+    const move = (direction: number) => {
+      const card = track.querySelector<HTMLElement>('.video-card');
+      const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+      const distance =
+        (card?.getBoundingClientRect().width || track.clientWidth) + gap;
+      track.scrollBy({
+        left: direction * distance,
+        behavior: matchMedia('(prefers-reduced-motion: reduce)').matches
+          ? 'auto'
+          : 'smooth',
+      });
+    };
+    track.addEventListener('keydown', (event) => {
+      if (event.target !== track) return;
+      if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
+        event.preventDefault();
+        move(event.key === 'ArrowRight' ? 1 : -1);
+      }
+    });
+
+    // Decode a frame at the start without starting playback, including on mobile.
+    section.querySelectorAll<HTMLVideoElement>('video').forEach((video) => {
+      const showBeginning = () => {
+        if (video.paused && video.currentTime === 0) video.currentTime = 0.01;
+      };
+      if (video.readyState >= 1) showBeginning();
+      else
+        video.addEventListener('loadedmetadata', showBeginning, { once: true });
+      video.addEventListener('play', () => {
+        section.querySelectorAll<HTMLVideoElement>('video').forEach((other) => {
+          if (other !== video) other.pause();
+        });
+      });
+    });
+  }
+</script>
+
+<style>
+  .videos {
+    border-top: 1px solid var(--line);
+  }
+  .videos-intro {
+    margin-top: 16px;
+    color: var(--muted);
+  }
+  .videos-track {
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    cursor: grab;
+    user-select: none;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .videos-track.is-dragging {
+    cursor: grabbing;
+    scroll-snap-type: none;
+  }
+  .videos-track::-webkit-scrollbar {
+    display: none;
+  }
+  .video-card {
+    flex: 0 0 calc((100% - 48px) / 3);
+    min-width: 0;
+    scroll-snap-align: start;
+  }
+  .video-player {
+    display: block;
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    object-fit: contain;
+    background: var(--surface);
+    border-radius: 18px;
+  }
+  .video-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    aspect-ratio: 9 / 16;
+    background: var(--surface);
+    border: 1px dashed var(--line);
+    border-radius: 18px;
+    color: var(--muted);
+  }
+  @media (max-width: 760px) {
+    .videos .section-heading {
+      flex-direction: row;
+      align-items: flex-end;
+      gap: 16px;
+    }
+    .videos-track {
+      gap: 20px;
+    }
+    .video-card {
+      flex-basis: calc((100% - 20px) / 2);
+    }
+  }
+  @media (max-width: 540px) {
+    .videos .section-heading {
+      flex-wrap: wrap;
+    }
+    .video-card {
+      flex-basis: 100%;
+    }
+  }
+</style>

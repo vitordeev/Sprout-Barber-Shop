@@ -1,0 +1,14 @@
+---
+import BrandLogo from './BrandLogo.astro';
+import { hasCutPhotos } from '../data/gallery';
+---
+
+<header class="header wrap">
+  <BrandLogo /><nav aria-label="Navegação principal">
+    <a href="#servicos">Serviços</a>{
+      hasCutPhotos && <a href="#cortes">Cortes</a>
+    }<a href="#videos">Vídeos</a><a href="#avaliacoes">Avaliações</a><a
+      href="#visite">Onde estamos</a
+    >
+  </nav>
+</header>

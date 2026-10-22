@@ -1,0 +1,19 @@
+---
+import { business } from '../data/business';
+import ContactLink from './ContactLink.astro';
+---
+
+<section class="about section wrap" id="essencia" aria-labelledby="about-title">
+  <div class="about-grid">
+    <div>
+      <p class="eyebrow">QUEM CUIDA DO SEU CORTE</p><h2 id="about-title">
+        Conheça o <span>{business.barber}.</span>
+      </h2>
+    </div>
+    <div class="barber-profile">
+      <span class="barber-monogram" aria-hidden="true">L</span>
+      <div><h3>{business.barber}</h3><p>Barbeiro na Sprout BarberShop</p></div>
+      <ContactLink />
+    </div>
+  </div>
+</section>

@@ -1,0 +1,55 @@
+---
+import { services } from '../data/business';
+---
+
+<section class="section wrap" id="servicos" aria-labelledby="services-title">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">SERVIÇOS E PREÇOS</p><h2 id="services-title">
+        Escolha seu <span>cuidado.</span>
+      </h2>
+    </div>
+  </div>
+  <div class="services-controls" aria-label="Filtrar serviços" hidden>
+    <button class="active" data-filter="all" aria-pressed="true"
+      >Todos os serviços</button
+    ><button data-filter="common" aria-pressed="false">Corte & cuidado</button
+    ><button data-filter="chemical" aria-pressed="false">Química & cor</button>
+  </div>
+  <div class="services-grid">
+    {
+      services.map((service) => (
+        <article class="service" data-category={service.category}>
+          <h3>{service.name}</h3>
+          {service.description && <p>{service.description}</p>}
+          <div class="service-bottom">
+            <strong>
+              R$ {service.price}
+              <small>,00</small>
+            </strong>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</section>
+<script>
+  const controls = document.querySelector<HTMLElement>('.services-controls');
+  if (controls) {
+    controls.hidden = false;
+    const buttons = controls.querySelectorAll<HTMLButtonElement>('button');
+    buttons.forEach((button) =>
+      button.addEventListener('click', () => {
+        const category = button.dataset['filter'];
+        buttons.forEach((item) => {
+          item.classList.toggle('active', item === button);
+          item.setAttribute('aria-pressed', String(item === button));
+        });
+        document.querySelectorAll<HTMLElement>('.service').forEach((card) => {
+          card.hidden =
+            category !== 'all' && card.dataset['category'] !== category;
+        });
+      }),
+    );
+  }
+</script>

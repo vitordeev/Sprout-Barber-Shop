@@ -1,0 +1,8 @@
+---
+import BrandLogo from './BrandLogo.astro';
+import { business } from '../data/business';
+---
+
+<footer class="footer wrap">
+  <BrandLogo /><span>© {new Date().getFullYear()} {business.name}</span>
+</footer>

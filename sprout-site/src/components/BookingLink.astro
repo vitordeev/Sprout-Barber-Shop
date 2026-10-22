@@ -1,0 +1,16 @@
+---
+import { business } from '../data/business';
+interface Props {
+  label?: string;
+}
+const { label = 'Agendar meu horário' } = Astro.props;
+---
+
+<a
+  class="button"
+  href={business.bookingUrl || '#visite'}
+  target={business.bookingUrl ? '_blank' : undefined}
+  rel={business.bookingUrl ? 'noopener noreferrer' : undefined}
+  >{business.bookingUrl ? label : 'Planeje sua visita'}
+  <span aria-hidden="true">↗</span></a
+>
