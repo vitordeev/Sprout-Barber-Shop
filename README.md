@@ -5,7 +5,7 @@ Landing page responsiva para uma barbearia, desenvolvida com **Astro, TypeScript
 **[Acesse o site](https://sproutbarbershop.netlify.app/)**
 
 <p align="center">
-  <img src="public/images/sprout-logo-graffiti.png" alt="Logo Sprout BarberShop" width="420" />
+  <img src="sprout-site/public/images/sprout-logo-graffiti.png" alt="Logo Sprout BarberShop" width="420" />
 </p>
 
 ## Funcionalidades
@@ -26,9 +26,10 @@ Site estático, sem backend ou banco de dados. Componentes, dados do negócio e 
 
 ## Executar localmente
 
-Requer **Node.js 22.12 ou superior** e npm. Na pasta do projeto:
+Requer **Node.js 22.12 ou superior** e npm. Entre na pasta do site:
 
 ```sh
+cd sprout-site
 npm ci
 npm run dev
 ```
@@ -48,16 +49,17 @@ Abra o endereço exibido no terminal. Para visualizar pelo celular na mesma rede
 ## Estrutura
 
 ```text
-public/images/       Identidade visual
-public/videos/       Vídeos do carrossel
-src/assets/cuts/     Fotos para a galeria
-src/components/      Seções e elementos reutilizáveis
-src/data/            Serviços, contatos, avaliações e mídias
-src/layouts/         Layout e metadados
-src/pages/           Página principal
-src/styles/          Estilos globais e responsividade
-docs/                Documentação técnica
-scripts/             Utilitários de mídia e publicação
+sprout-site/
+  public/images/       Identidade visual
+  public/videos/       Vídeos do carrossel
+  src/assets/cuts/     Fotos para a galeria
+  src/components/      Seções e elementos reutilizáveis
+  src/data/            Serviços, contatos, avaliações e mídias
+  src/layouts/         Layout e metadados
+  src/pages/           Página principal
+  src/styles/          Estilos globais e responsividade
+  docs/                Documentação técnica
+  scripts/             Utilitários de mídia e publicação
 ```
 
 ## Personalização
@@ -70,9 +72,9 @@ Preços e avaliações são dados estáticos. Cidade e CEP ainda precisam de con
 
 O fluxo padrão é `npm ci` seguido de `npm run build`; publique a pasta `dist/` em uma hospedagem estática. As regras de `public/_headers` dependem do suporte do provedor.
 
-Publicado manualmente no Netlify, no endereço informado pelo responsável: [sproutbarbershop.netlify.app](https://sproutbarbershop.netlify.app/). O build padrão encontrou restrições de acesso no ambiente Windows em sessões anteriores. Consulte as limitações e o fluxo alternativo em [docs/github.md](docs/github.md).
+Publicado manualmente no Netlify, no endereço informado pelo responsável: [sproutbarbershop.netlify.app](https://sproutbarbershop.netlify.app/). O build padrão encontrou restrições de acesso no ambiente Windows em sessões anteriores. Consulte as limitações e o fluxo alternativo em [docs/github.md](sprout-site/docs/github.md).
 
-Documentação: [arquitetura](docs/architecture.md) · [segurança](docs/security.md) · [guia do GitHub](docs/github.md).
+Documentação: [arquitetura](sprout-site/docs/architecture.md) · [segurança](sprout-site/docs/security.md) · [guia do GitHub](sprout-site/docs/github.md).
 
 ## Direitos de uso
 
