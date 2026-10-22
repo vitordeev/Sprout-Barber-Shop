@@ -1,0 +1,23 @@
+# Arquivos locais da pasta de trabalho; o site fica em sprout-site/.
+/Imagens de Referncias/
+/publicar-netlify/
+/*.zip
+/.vscode/
+
+# Dependências, arquivos gerados e configurações locais em qualquer subpasta.
+node_modules/
+dist/
+.astro/
+.sites-runtime/
+.npm-cache/
+.openai/
+artifacts/
+.idea/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.log
+.DS_Store
+Thumbs.db
